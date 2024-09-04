@@ -2,12 +2,17 @@ package org.example.emergencyroomstatus.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.emergencyroomstatus.dto.response.EmergencyRoomResponseEntityDto;
 import org.example.emergencyroomstatus.service.EmergencyRoomSearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Objects;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -25,7 +30,10 @@ public class EmergencyRoomController {
     ) {
         log.info("EmergencyRoomController :: getEmergencyRooms :: sido = {}, sigungu = {}", sido, sigungu);
 
-        emergencyRoomSearchService.getEmergencyRooms(sido, sigungu);
+        // Daum API에서 넘겨준 시군구를 공공데이터포털로 요청할 시 반환 개수가 0개인 경우가 있어서 시군구 맨 앞부분만 파싱해서 요청함
+        String parsedSigungu = sigungu.split(" ")[0];
+
+        EmergencyRoomResponseEntityDto responseEntityDto = emergencyRoomSearchService.getEmergencyRooms(sido, parsedSigungu);
 
         return "emergency-rooms";
     }
