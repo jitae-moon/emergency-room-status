@@ -2,6 +2,7 @@ package org.example.emergencyroomstatus.dto.response;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,5 +16,12 @@ public class EmergencyRoomResponseBodyDto{
         @JacksonXmlElementWrapper(localName = "items")
         @JacksonXmlProperty(localName = "item")
         EmergencyRoomDto[] emergencyRoomDto;
+
+        public EmergencyRoomResponseBodyDto() { }
+
+        @Builder
+        public EmergencyRoomResponseBodyDto(EmergencyRoomDto[] emergencyRoomDto) {
+                this.emergencyRoomDto = emergencyRoomDto;
+        }
 
 }
