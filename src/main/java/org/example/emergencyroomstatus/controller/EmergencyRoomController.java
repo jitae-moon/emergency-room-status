@@ -32,11 +32,9 @@ public class EmergencyRoomController {
         // Daum API에서 넘겨준 시군구를 공공데이터포털로 요청할 시 반환 개수가 0개인 경우가 있어서 시군구 맨 앞부분만 파싱해서 요청함
         String parsedSigungu = sigungu.split(" ")[0];
 
-        EmergencyRoomResponseEntityDto responseEntityDto = emergencyRoomSearchService.getEmergencyRooms(sido, parsedSigungu);
+        List<EmergencyRoomDto> emergencyRooms = emergencyRoomSearchService.getEmergencyRooms(sido, parsedSigungu);
 
-        List<EmergencyRoomDto> emergencyRoomDtos = responseEntityDto.getEmergencyRoomResponseBodyDto().getEmergencyRoomDtos();
-
-        model.addAttribute("emergencyRoomDtos", emergencyRoomDtos);
+        model.addAttribute("emergencyRooms", emergencyRooms);
 
         return "emergency-rooms/index";
     }
