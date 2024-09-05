@@ -1,13 +1,4 @@
 spring:
-  profiles:
-    active: test
-
----
-
-spring:
-  config:
-    activate:
-      on-profile: test
   datasource:
     url: jdbc:h2:mem:test
     username: sa
@@ -20,3 +11,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+open:
+  api:
+    key: ${OPEN_API_KEY}
