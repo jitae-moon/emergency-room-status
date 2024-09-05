@@ -8,6 +8,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.example.emergencyroomstatus.dto.EmergencyRoomDto;
 
+import java.util.List;
+
 @ToString
 @Setter
 @Getter
@@ -15,13 +17,13 @@ public class EmergencyRoomResponseBodyDto{
 
         @JacksonXmlElementWrapper(localName = "items")
         @JacksonXmlProperty(localName = "item")
-        EmergencyRoomDto[] emergencyRoomDto;
+        List<EmergencyRoomDto>emergencyRoomDtos;
 
         public EmergencyRoomResponseBodyDto() { }
 
         @Builder
-        public EmergencyRoomResponseBodyDto(EmergencyRoomDto[] emergencyRoomDto) {
-                this.emergencyRoomDto = emergencyRoomDto;
+        public EmergencyRoomResponseBodyDto(List<EmergencyRoomDto> emergencyRoomDtos) {
+                this.emergencyRoomDtos = emergencyRoomDtos;
         }
 
 }
