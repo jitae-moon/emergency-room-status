@@ -23,14 +23,21 @@ public class EmergencyRoomDto {
         @JacksonXmlProperty(localName = "wgs84Lon")
         private String longitude;
 
+        @JacksonXmlProperty(localName = "dutyEmclsName")
+        private String category;
+
+        @JacksonXmlProperty(localName = "dutyTel1")
+        private String contact;
+
         public EmergencyRoomDto() { }
 
         @Builder
-        public EmergencyRoomDto(String name, String address, String latitude, String longitude) {
+        public EmergencyRoomDto(String name, String address, String latitude, String longitude, String category) {
                 this.name = name;
                 this.address = address;
                 this.latitude = latitude;
                 this.longitude = longitude;
+                this.category = category;
         }
 
 }

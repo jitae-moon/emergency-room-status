@@ -2,17 +2,16 @@ package org.example.emergencyroomstatus.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.emergencyroomstatus.dto.EmergencyRoomDto;
 import org.example.emergencyroomstatus.dto.response.EmergencyRoomResponseEntityDto;
 import org.example.emergencyroomstatus.service.EmergencyRoomSearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Objects;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -35,7 +34,11 @@ public class EmergencyRoomController {
 
         EmergencyRoomResponseEntityDto responseEntityDto = emergencyRoomSearchService.getEmergencyRooms(sido, parsedSigungu);
 
-        return "emergency-rooms";
+        List<EmergencyRoomDto> emergencyRoomDtos = responseEntityDto.getEmergencyRoomResponseBodyDto().getEmergencyRoomDtos();
+
+        model.addAttribute("emergencyRoomDtos", emergencyRoomDtos);
+
+        return "emergency-rooms/index";
     }
 
 }

@@ -1,5 +1,6 @@
 package org.example.emergencyroomstatus.controller;
 
+import org.example.emergencyroomstatus.dto.response.EmergencyRoomResponseBodyDto;
 import org.example.emergencyroomstatus.dto.response.EmergencyRoomResponseEntityDto;
 import org.example.emergencyroomstatus.service.EmergencyRoomSearchService;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ class EmergencyRoomControllerTest {
         String sido = "성남시";
         String sigungu = "분당구";
         given(emergencyRoomSearchService.getEmergencyRooms(anyString(), anyString()))
-                .willReturn(EmergencyRoomResponseEntityDto.builder().build());
+                .willReturn(EmergencyRoomResponseEntityDto.builder().emergencyRoomResponseBodyDto(EmergencyRoomResponseBodyDto.builder().build()).build());
 
         // When
         mvc.perform(MockMvcRequestBuilders.get("/emergency-rooms")
@@ -38,7 +39,7 @@ class EmergencyRoomControllerTest {
                 .queryParam("sigungu", sigungu))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("emergency-rooms"));
+                .andExpect(view().name("emergency-rooms/index"));
 
         // Then
         then(emergencyRoomSearchService).should().getEmergencyRooms(anyString(), anyString());
