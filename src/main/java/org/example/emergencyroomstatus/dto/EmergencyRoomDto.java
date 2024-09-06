@@ -1,5 +1,6 @@
 package org.example.emergencyroomstatus.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +10,11 @@ import lombok.ToString;
 @ToString
 @Setter
 @Getter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EmergencyRoomDto {
+
+        @JacksonXmlProperty(localName = "hpid")
+        private String id;
 
         @JacksonXmlProperty(localName = "dutyName")
         private String name;
@@ -32,7 +37,7 @@ public class EmergencyRoomDto {
         public EmergencyRoomDto() { }
 
         @Builder
-        public EmergencyRoomDto(String name, String address, String latitude, String longitude, String category) {
+        public EmergencyRoomDto(String id, String name, String address, String latitude, String longitude, String category) {
                 this.name = name;
                 this.address = address;
                 this.latitude = latitude;
