@@ -33,7 +33,7 @@
                       <span th:text="${status.count}">NO</span>
                     </td>
                     <td>
-                      <a href="#" class="user-link" th:text="${emergencyRoom.name}">응급기관명</a>
+                      <a th:href="@{'/emergency-rooms/' + ${emergencyRoom.id}}" class="user-link" th:text="${emergencyRoom.name}">응급기관명</a>
                       <span class="user-subhead" th:text="${emergencyRoom.category}">응급기관분류명</span>
                     </td>
                     <td>
@@ -42,7 +42,7 @@
                       </span>
                       </td>
                     <td class="text-center">
-                      <span class="label label-default" th:text="${emergencyRoom.contact}">응급기관연락처</span>
+                      <span class="label label-default" th:text="${emergencyRoom.mainContact}">응급기관연락처</span>
                     </td>
                   </tr>
                   </tbody>
