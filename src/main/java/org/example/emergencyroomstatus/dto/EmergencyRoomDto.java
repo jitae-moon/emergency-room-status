@@ -31,8 +31,13 @@ public class EmergencyRoomDto {
         @JacksonXmlProperty(localName = "dutyEmclsName")
         private String category;
 
+        // 대표 전화
         @JacksonXmlProperty(localName = "dutyTel1")
-        private String contact;
+        private String mainContact;
+
+        // 응급실 전화
+        @JacksonXmlProperty(localName = "dutyTel3")
+        private String directContact;
 
         public EmergencyRoomDto() { }
 
