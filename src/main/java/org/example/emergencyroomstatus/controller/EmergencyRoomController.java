@@ -8,6 +8,7 @@ import org.example.emergencyroomstatus.service.EmergencyRoomSearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,6 +38,16 @@ public class EmergencyRoomController {
         model.addAttribute("emergencyRooms", emergencyRooms);
 
         return "emergency-rooms/index";
+    }
+
+    @GetMapping("/{id}")
+    public String getEmergencyRoom(@PathVariable String id, Model model) {
+        log.info("EmergencyRoomController :: getEmergencyRoom :: id = {}", id);
+
+        EmergencyRoomDto emergencyRoom = emergencyRoomSearchService.getEmergencyRoom(id);
+        model.addAttribute("emergencyRoom", emergencyRoom);
+
+        return "emergency-rooms/detail";
     }
 
 }
