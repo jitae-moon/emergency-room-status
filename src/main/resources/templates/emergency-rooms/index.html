@@ -53,6 +53,30 @@
         </div>
       </div>
     </div>
+
+  <!-- Beginning of Pagination -->
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a th:class="'page-link' + ${emergencyRooms.number - 1 < 0 ? ' disabled' : ''}" th:href="@{emergency-rooms(page=${emergencyRooms.number - 1})}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item" th:each="paginationBarNumber, status : ${paginationBarNumbers}">
+        <a
+                th:class="'page-link' + (${emergencyRooms.number == paginationBarNumber ? ' disabled' : ''})"
+                th:text="${status.count}"
+                th:href="@{/emergency-rooms(page=${paginationBarNumber})}">1
+        </a>
+      </li>
+      <li class="page-item">
+        <a th:class="'page-link' + ${emergencyRooms.number + 1 >= emergencyRooms.totalPages ? ' disabled' : ''}" th:href="@{/emergency-rooms(page=${emergencyRooms.number + 1})}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- End of Pagination -->
 </main>
 
 <footer th:replace="~{/layouts/footer :: footer}">
