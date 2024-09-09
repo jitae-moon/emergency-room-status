@@ -17,7 +17,7 @@ public class EmergencyRoomResponseBodyDto{
 
         @JacksonXmlElementWrapper(localName = "items")
         @JacksonXmlProperty(localName = "item")
-        List<EmergencyRoomDto>emergencyRoomDtos;
+        List<EmergencyRoomDto> emergencyRoomDtos;
 
         public EmergencyRoomResponseBodyDto() { }
 
