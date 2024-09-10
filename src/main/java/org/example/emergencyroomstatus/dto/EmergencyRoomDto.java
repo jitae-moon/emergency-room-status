@@ -13,8 +13,10 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EmergencyRoomDto {
 
+        private Long id;
+
         @JacksonXmlProperty(localName = "hpid")
-        private String id;
+        private String hospitalId;
 
         @JacksonXmlProperty(localName = "dutyName")
         private String name;
