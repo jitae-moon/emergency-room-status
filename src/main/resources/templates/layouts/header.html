@@ -4,9 +4,16 @@
 	<title>Header</title>
 </head>
 <body>
-<header th:fragment="header">
-	<!-- TODO -->
-	<h1>Header</h1>
-</header>
+	<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom" th:fragment="header">
+		<a th:href="@{/}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+			<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+			<span class="fs-4">응급실 현황</span>
+		</a>
+
+		<ul class="nav nav-pills">
+			<li class="nav-item"><a th:href="@{/}" class="nav-link" aria-current="page">주변 응급실 찾기</a></li>
+			<li class="nav-item"><a th:href="@{/notice}" class="nav-link">공지사항</a></li>
+		</ul>
+	</header>
 </body>
 </html>

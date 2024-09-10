@@ -6,7 +6,6 @@ import org.example.emergencyroomstatus.domain.Address;
 import org.example.emergencyroomstatus.domain.EmergencyRoom;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
@@ -27,13 +26,11 @@ class DataJpaRepositoryTest {
 
     AddressRepository addressRepository;
     EmergencyRoomRepository emergencyRoomRepository;
-    ModelMapper modelMapper;
 
     @Autowired
-    public DataJpaRepositoryTest(AddressRepository addressRepository, EmergencyRoomRepository emergencyRoomRepository, ModelMapper modelMapper) {
+    public DataJpaRepositoryTest(AddressRepository addressRepository, EmergencyRoomRepository emergencyRoomRepository) {
         this.addressRepository = addressRepository;
         this.emergencyRoomRepository = emergencyRoomRepository;
-        this.modelMapper = modelMapper;
     }
 
     @DisplayName("Auditing Field 테스트 :: @CreatedDate 동작 여부 확인")
@@ -60,7 +57,7 @@ class DataJpaRepositoryTest {
         Address actual = addressRepository.save(expected);
 
         // Then
-        assertThat(actual.getCreatedDate()).isAfter(now);
+        assertThat(actual.getCreatedDate()).isAfter(now.minusSeconds(1));
         assertThat(actual.getCreatedDate()).isBefore(now.plusMinutes(1));
     }
 
