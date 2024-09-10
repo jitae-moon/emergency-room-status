@@ -1,0 +1,10 @@
+services:
+  project-database:
+    container_name: project-mysql
+    build:
+      dockerfile: Dockerfile
+      context: ./database
+    image: jitaemoon5/mysql
+    environment:
+      - MYSQL_DATABASE=emergency-room-status
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
